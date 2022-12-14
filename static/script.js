@@ -1,0 +1,1 @@
+document.querySelector('.game-answer__input').focus()

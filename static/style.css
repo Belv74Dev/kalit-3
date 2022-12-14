@@ -1,0 +1,44 @@
+.game {
+  max-width: 320px;
+  margin: 0 auto;
+  font-family: 'Roboto Condensed', sans-serif;
+}
+.game__wrapper {}
+.game__title {}
+.game__blocks {}
+.game__preview {}
+.game__answer {}
+
+.game-preview {
+	margin: 0 0 20px 0;
+}
+.game-preview__text {}
+.game-preview__min {}
+.game-preview__max {}
+
+.game-answer {
+  /* margin: 20px 0 0; */
+}
+.game-answer__input {}
+.game-answer__btn {}
+
+.btn-answer {}
+.btn-restart {
+  margin: 20px 0 0;
+}
+
+.game-info {
+  margin: 20px 0 0;
+}
+.game-info__attempts {
+	display: block;
+	margin: 20px 0 0;
+}
+.game-info__attempts-num {}
+.game-info__text {
+  display: block;
+}
+.game-info__btn {}
+.hidden {
+	display: none;
+}

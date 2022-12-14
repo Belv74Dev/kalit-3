@@ -1,0 +1,60 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed&display=swap" rel="stylesheet">
+
+	<link rel="icon" type="image/x-icon" href="{% static '/favicon.ico' %}">
+	<link rel="stylesheet" href="{% static '/style.css' %}">
+	<title>Лабораторная работа №3</title>
+</head>
+<body>
+	<main class="game">
+		<div class="game__wrapper">
+				{% if burglary %}
+					<script>
+						alert('Была произведена попытка взлома игры. Вы не сможете продолжить игру!')
+					</script>
+				{% else %}
+					<h1 class="game__title">Игра "Угадай число"</h1>
+					<div class="game__blocks">
+							<div class="game__preview game-preview">
+									<span class="game-preview__text">
+											Угадайте число в диапазоне
+											от <span class="game-preview__min">{{ min }}</span>
+											до <span class="game-preview__max">{{ max }}</span>
+									</span>
+							</div>
+							{% if endGame == False %}
+								<form class="game__answer game-answer" method="POST">
+									{% csrf_token %}
+									<input class="hidden" name="attempt" type="string" value="{{ attemptEn }}" readonly>
+									<input class="hidden" name="mystery" type="string" value="{{ mysteryEn }}" readonly>
+									<input class="hidden" name="checksum" type="string" value="{{ checksumEn }}" readonly>
+									
+									<input class="game-answer__input" name="answer" type="number" placeholder="Введите число" required>
+									<button class="game-answer__btn btn-answer" type="submit">Проверить</button>
+									<a href="/game" class="game-answer__btn btn-restart">Заново</a>
+								</form>
+								<span class="game-info__attempts">
+									Осталось <span class="game-info__attempts-num">{{ attempt }}</span> попыток
+								</span>
+							{% endif %}
+							<span class="game-info__text">{{ answerText }}</span>
+							{% if endGame %}
+								<a href="/game" class="game-info__btn btn-restart">Заново</a>
+							{% endif %}
+						</div>
+					</div>
+				{% endif %}
+			</div>
+	</main>
+	<script src="{% static '/script.js' %}"></script>	
+</body>
+</html>
